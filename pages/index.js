@@ -1,5 +1,10 @@
 function Home() {
-    return <h1>To evoluindo, vai da bom! Vamo que vamo!</h1>
+    return(
+    <div>
+        <h1>Agora to vendo continuos deploying, vai da bom mano, to evoluindo!</h1>
+        <img src="/assets/images/dance.gif"/>
+    </div>) 
+    
 }
 
 export default Home;
