@@ -8,12 +8,17 @@
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watchAll",
+    "docker": "docker compose --file infra/compose.yaml up -d",
+    "docker-close": "docker compose --file infra/compose.yaml down",
+    "postgres": "docker exec -it infra-database-1 psql --host=localhost --username=postgres --port=5432",
+    "build": "npm run docker && npm run postgres && npm run dev"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "next": "13.1.6",
+    "pg": "8.11.3",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
