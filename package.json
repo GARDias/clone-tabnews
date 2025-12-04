@@ -11,8 +11,7 @@
     "test:watch": "jest --watchAll",
     "docker": "docker compose --file infra/compose.yaml up -d",
     "docker-close": "docker compose --file infra/compose.yaml down",
-    "postgres": "docker exec -it infra-database-1 psql --host=localhost --username=postgres --port=5432",
-    "build": "npm run docker && npm run postgres && npm run dev"
+    "postgres": "docker exec -it infra-database-1 psql --host=localhost --username=postgres --port=5432"
   },
   "author": "",
   "license": "MIT",
