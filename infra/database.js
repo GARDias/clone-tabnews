@@ -1,12 +1,14 @@
 import { Client } from "pg";
 async function query(queryObject) {
-  const client = new Client( process.env.DATABASE_URL);
-  try{
-    await client.connect();
+  let client;
+  try {
+    client = await getNewClient();
     const res = await client.query(queryObject);
-    console.log(res.rows[0].message);
-    return res ;
-  } catch(err) {
+    console.log(
+      res.rows === undefined ? "Retornou undefined" : res.rows[0].message,
+    );
+    return res;
+  } catch (err) {
     console.error(err);
     throw error;
   } finally {
@@ -14,6 +16,19 @@ async function query(queryObject) {
   }
 }
 
+async function getNewClient() {
+  const client = new Client({
+    port: process.env.POSTGRES_PORT,
+    user: process.env.POSTGRES_USER,
+    database: process.env.POSTGRES_DB,
+    password: process.env.POSTGRES_PASSWORD,
+  });
+
+  await client.connect();
+  return client;
+}
+
 export default {
-  query: query,
+  query,
+  getNewClient,
 };
