@@ -16,6 +16,10 @@ async function query(queryObject) {
   }
 }
 
+function getSSL() {
+  if(process.env.NODE_ENV != "test")
+
+
 async function getNewClient() {
   const client = new Client({
     host: process.env.POSTGRES_HOST,
@@ -24,9 +28,8 @@ async function getNewClient() {
     database: process.env.POSTGRES_DB,
     password: process.env.POSTGRES_PASSWORD,
     ssl:
-      process.env.NODE_ENV === "production"
-        ? { rejectUnauthorized: false }
-        : false,
+      process.env.NODE_ENV === "test"
+        ? true: { rejectUnauthorized: false },
   });
 
   await client.connect();
