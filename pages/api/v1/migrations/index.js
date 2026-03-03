@@ -6,7 +6,7 @@ export default async function migrations(request, response) {
   const dbClient = await database.getNewClient();
   const defaultConfig = {
     dbClient: dbClient,
-    dryRun: true,
+    dryRun: false,
     migrationsTable: "pgmigrations",
     verbose: true,
     dir: join("infra", "migrations"),
