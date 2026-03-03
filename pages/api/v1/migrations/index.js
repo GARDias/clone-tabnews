@@ -31,5 +31,5 @@ export default async function migrations(request, response) {
     return response.status(200).json(afterMigrated);
   }
 
-  return response.status(405).json();
+  return response.status(405).end();
 }
